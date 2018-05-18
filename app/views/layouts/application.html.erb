@@ -13,7 +13,7 @@
 	</head>
 	
 	<body>
-		<%= render "common/navbar" %>
+		<%= render "common/#{(@is_login?"navbar_logged":"navbar")}" %>
 
 		<div id="main">
 			<%= yield %>
