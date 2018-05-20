@@ -2,8 +2,15 @@
 	<table class="table table-hover w-50 mx-auto">
 		<thead>
 			<tr>
-				<th class="text-center"colspan="3">公告列表</th>
+				<th class="text-center" colspan="3">公告列表</th>
+				<th>
+					<% if is_admin==true %>
+						<button type="button" class="btn btn-outline-secondary">新增公告</button>
+					<% end %>
+				</th>
+
 			</tr>
+
 		</thead>
 
 		<tbody>

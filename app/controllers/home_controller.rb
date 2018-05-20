@@ -1,10 +1,10 @@
 class HomeController < ApplicationController
 	layout "application"
-	@is_login=false
 	def index
 		@is_login=true
+		is_admin = true
 		render locals: {
-			anncs: Announcement.select("title, content, created_at")
+			anncs: Announcement.select("title, content, created_at"), is_admin: is_admin
 		}
 	end
 
