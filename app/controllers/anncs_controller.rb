@@ -1,0 +1,2 @@
+class AnncsController < ApplicationController
+end

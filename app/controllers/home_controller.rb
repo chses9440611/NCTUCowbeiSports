@@ -4,7 +4,7 @@ class HomeController < ApplicationController
 		@is_login=true
 		is_admin = true
 		render locals: {
-			anncs: Announcement.select("id, title, content, created_at"), is_admin: is_admin
+			anncs: Announcement.select("title, content, created_at"), is_admin: is_admin
 		}
 	end
 
