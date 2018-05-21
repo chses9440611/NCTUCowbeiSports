@@ -15,7 +15,12 @@ class AnnouncementsController < ActionController::Base
 	end
 
 	def show
-		
+	end
+
+	def destroy
+		@an = Announcement.find(params[:id])
+		@an.destroy if @an
+		redirect_to home_path, notice: "公告已刪除"
 	end
 
 
