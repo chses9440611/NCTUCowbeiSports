@@ -1,0 +1,17 @@
+<div class="container">
+
+	<h1>新增公告</h1>
+
+	<%= form_for @announcement do |f| %>
+		<%= f.label :title, "標題" %>
+		<%= f.text_field :title %> <br/>
+
+		<%= f.label :content, "內容" %>
+		<%= f.text_area :content %> <br/>
+
+		<%= f.submit %>
+		<%= link_to "取消", "/"%>
+	<% end %>
+</div>
+
+

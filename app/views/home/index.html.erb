@@ -5,7 +5,7 @@
 				<th class="text-center" colspan="3">公告列表</th>
 				<th>
 					<% if @is_admin %>
-						<button type="button" class="btn btn-outline-secondary">新增公告</button>
+						<%= link_to "新增公告", new_announcement_path %>
 					<% end %>
 				</th>
 
@@ -17,11 +17,11 @@
 			<% @anncs.each do |annc| %>
 				<tr>
 					<td>
-						<%= annc.created_at.strftime("%Y-%m-%D")%>
+						<%= annc.created_at.strftime("%Y-%m-%d")%>
 					</td>
 					
 					<td>
-						<%= annc.title %>
+						<%= link_to (annc.title || "No content"), anncs_path(id: annc.id) %>
 					</td>
 					
 					<td>	
