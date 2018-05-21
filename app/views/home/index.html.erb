@@ -4,7 +4,7 @@
 			<tr>
 				<th class="text-center" colspan="3">公告列表</th>
 				<th>
-					<% if is_admin==true %>
+					<% if @is_admin %>
 						<button type="button" class="btn btn-outline-secondary">新增公告</button>
 					<% end %>
 				</th>
@@ -14,14 +14,14 @@
 		</thead>
 
 		<tbody>
-			<% anncs.each do |annc| %>
+			<% @anncs.each do |annc| %>
 				<tr>
 					<td>
 						<%= annc.created_at.strftime("%Y-%m-%D")%>
 					</td>
 					
 					<td>
-						<%= annc.title%>
+						<%= annc.title %>
 					</td>
 					
 					<td>	
@@ -29,7 +29,7 @@
 							詳細
 						</button>
 					</td>
-					<%= render "modal", :annc => annc %>
+          <%= render partial: "modal", locals: {annc: annc} %>
 				</tr>
 			<% end %>
 	</table>
