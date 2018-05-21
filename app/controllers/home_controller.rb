@@ -3,7 +3,7 @@ class HomeController < ApplicationController
 	def index
 		@is_login = true
     @is_admin = true
-    @anncs = Announcement.all
+    @anncs = Announcement.all.reverse
 	end
 
 end
