@@ -25,13 +25,26 @@
 					</td>
 					
 					<td>	
-						<button type="button" class="btn btn-success" data-toggle="modal" data-target="#content_show">
+						<button type="button" class="btn btn-success" data-toggle="modal" data-target="#content_show" data-title="<%= annc.title || "No title"%>" data-content="<%= annc.content || "No content" %>" data-time="<%= annc.created_at %>">
 							詳細
 						</button>
 					</td>
-          <%= render partial: "modal", locals: {annc: annc} %>
+					<%= render partial: "modal"%>
 				</tr>
 			<% end %>
 	</table>
 </div>
 
+
+<script>
+$('#content_show').on('show.bs.modal', function(event){
+	var button = $(event.relatedTarget)
+	var title = button.data('title')
+	var content = button.data('content')
+	var time = button.data('time')
+	var modal= $(this)
+	modal.find('.modal-title').text(title)
+	modal.find('.modal-body').text(content)
+	modal.find('.modal-footer').text(time)
+})
+</script>
