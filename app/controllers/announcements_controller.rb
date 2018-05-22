@@ -1,6 +1,7 @@
 class AnnouncementsController < ActionController::Base
 	layout "application"
-	before_action :find_annc, only: [:show]
+	skip_before_action :verify_authenticity_token, only: [:destroy]
+	before_action :find_annc, only: [:show, :destroy]
 	def new
 		@announcement = Announcement.new
 	end
@@ -18,9 +19,14 @@ class AnnouncementsController < ActionController::Base
 	end
 
 	def destroy
-		@an = Announcement.find(params[:id])
-		@an.destroy if @an
-		redirect_to home_path, notice: "公告已刪除"
+		#@announcement = Announcement.find(params[:id])
+		if @annc
+			if @annc.destroy
+				redirect_to home_path, notice: "公告已刪除"
+			else
+				redirect_to home_path, notice: "公告未刪除"
+			end
+		end
 	end
 
 

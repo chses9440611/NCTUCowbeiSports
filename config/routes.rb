@@ -4,5 +4,5 @@ Rails.application.routes.draw do
   resources :announcements, only: [:index, :create, :update]
   get "/anncs" => "announcements#show", as: :anncs
   get "/anncs/add" => "announcements#new", as: :new_announcement
-  get "/anncs/delete" => "announcements#destroy", as: :delete_announcement
+  delete "/anncs/delete" => "announcements#destroy", as: :delete_announcement
 end
