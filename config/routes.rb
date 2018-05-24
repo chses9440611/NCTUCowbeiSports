@@ -5,4 +5,6 @@ Rails.application.routes.draw do
   get "/anncs" => "announcements#show", as: :anncs
   get "/anncs/add" => "announcements#new", as: :new_announcement
   delete "/anncs/delete" => "announcements#destroy", as: :delete_announcement
+  resources :users, only:[:new, :index, :create]
+  get "/register" => redirect("/users/new")
 end
