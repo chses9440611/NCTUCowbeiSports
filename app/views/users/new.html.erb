@@ -1,0 +1,23 @@
+<div class="container">
+
+	<h1>註冊帳號</h1>
+
+	<%= form_for @user do |f| %>
+		<%= f.label :student_id, "學號" %>
+		<%= f.text_field :student_id %> <br/>
+
+		<%= f.label :email, "email:" %>
+		<%= f.text_field :email %> <br/>
+
+		<%= f.label :password, "密碼:" %>
+		<%= f.password_field :password, class: "form_input" %> <br/>
+
+		<%= f.label :password_confirmation, "密碼確認:" %>
+		<%= f.password_field :password_confirmation %> <br/>
+
+		<%= f.submit "送出" %>
+		<%= link_to "取消", "/"%>
+	<% end %>
+</div>
+
+
