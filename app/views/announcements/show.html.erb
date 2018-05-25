@@ -1,4 +1,6 @@
-<h1><%= @annc.title%></h1>
-<p><%= @annc.created_at %></p><br/>
-<p><%= @annc.content%></p>
-<%= link_to "返回", home_path, html_options= {class: "btn btn-outline-primary"} %>
+<div class="container">
+	<h1><%= @annc.title%></h1>
+	<p><%= @annc.created_at %></p><br/>
+	<p><%= @annc.content%></p>
+	<%= link_to "返回", home_path, html_options= {class: "btn btn-outline-primary"} %>
+</div>
