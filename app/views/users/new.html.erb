@@ -3,6 +3,16 @@
 	<h1>註冊帳號</h1>
 
 	<%= form_for @user do |f| %>
+		<% if @user.errors.any? %>
+			<div>
+				<ul class="text-danger">
+					<% @user.errors.full_messages.each do |message| %>
+						<%= message %>
+					<% end %>
+				</ul>
+			</div>
+		<% end %>
+
 		<%= f.label :student_id, "學號" %>
 		<%= f.text_field :student_id %> <br/>
 
@@ -15,7 +25,7 @@
 		<%= f.label :password_confirmation, "密碼確認:" %>
 		<%= f.password_field :password_confirmation %> <br/>
 
-		<%= f.submit "送出" %>
+		<%= f.submit "註冊" %>
 		<%= link_to "取消", "/"%>
 	<% end %>
 </div>
