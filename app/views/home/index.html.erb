@@ -29,7 +29,7 @@
 							詳細
 						</button>
 					</td>
-					<td><%= link_to "刪除", delete_announcement_path(id: annc.id), method: "delete", data: { confirm: "Are you sure?" } %></td>
+					<td><%= link_to "刪除", delete_announcement_path(id: annc.id), method: "delete", data: { confirm: "確定刪除" } %></td>
 					<%= render partial: "modal"%>
 				</tr>
 			<% end %>
