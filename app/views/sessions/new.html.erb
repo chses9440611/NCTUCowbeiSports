@@ -1,0 +1,18 @@
+<h1>登入</h1>
+
+<div class="container">
+	<%= form_for sessions_path, url: {:action => "create" } do |f| %>
+		<div class="field">
+			<%= f.label :student_id, "學號" %>
+			<%= f.text_field :student_id %><br/>
+		</div>
+
+		<div class="field">
+			<%= f.label :password, "密碼" %>
+			<%= f.password_field :password %><br/>
+		</div>
+
+		<%= f.submit "登入" %>
+
+	<% end %>
+</div>

@@ -7,4 +7,10 @@ Rails.application.routes.draw do
   delete "/anncs/delete" => "announcements#destroy", as: :delete_announcement
   resources :users, only:[:new, :index, :create]
   get "/register" => redirect("/users/new")
+
+  resources :sessions
+
+  #get "/login" => redirect("/sessions/new")
+  get "/login" => redirect("/sessions/new")
+  post "/login" => redirect("/sessions/create")
 end
