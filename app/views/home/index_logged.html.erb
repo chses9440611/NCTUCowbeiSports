@@ -3,11 +3,11 @@
 		<thead>
 			<tr>
 				<th class="text-center" colspan="3">公告列表</th>
-			<!--	<th>
+				<th>
 					<% if @is_admin %>
 						<%= link_to "新增公告", new_announcement_path %>
 					<% end %>
-			</th> -->
+				</th>
 
 			</tr>
 
@@ -29,7 +29,7 @@
 							詳細
 						</button>
 					</td>
-					<!-- <td><%= link_to "刪除", delete_announcement_path(id: annc.id), method: "delete", data: { confirm: "確定刪除" } %></td> -->
+					<td><%= link_to "刪除", delete_announcement_path(id: annc.id), method: "delete", data: { confirm: "確定刪除" } %></td>
 					<%= render partial: "modal"%>
 				</tr>
 			<% end %>

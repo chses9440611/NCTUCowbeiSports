@@ -10,6 +10,7 @@ class UsersController < ApplicationController
 		@user = User.new(params_permit)
 
 		if @user.save
+			log_in(@user)
 			redirect_to "/", notice: "註冊成功"
 		else
 			render :new
