@@ -8,8 +8,8 @@
 			<% @user="root"%>
 			<li class="nav-item active"><a class="nav-link" href="/">首頁</a></li>
 			<li class="nav-item"><a class="nav-link" href="#">活動列表</a></li>
-			<li class="nav-item"><a class="nav-link" href="#">Hello, <%= @user%> !</a></li>
-			<li class="nav-item"><a class="nav-link" href="#">登出</a></li>
+			<li class="nav-item"><a class="nav-link" href="#">Hello, <%= current_user.student_id %> !</a></li>
+			<li class="nav-item"><%= link_to "登出", session_path("current"), method: "delete"%></li>
 		</ul>
 	</div>
 </nav>

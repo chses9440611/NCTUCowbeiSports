@@ -16,12 +16,19 @@ class SessionsController < ApplicationController
 			session[:user_id] = user.id
 			redirect_to "/", notice: "登入成功"
 		else
-			render :new, alert: "學號或密碼錯誤"
+			flash[:alert] = "學號或密碼錯誤" # because session is not ActiveRecord
+			render :new
 		end
 
 	end
 
-
+	def destroy
+		if log_out
+		redirect_to home_path, notice: "登出成功"
+		else
+			redirect_to home_path, alert: "登出失敗"
+		end
+	end
 
 	private 
 		def params_permit

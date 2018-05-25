@@ -14,7 +14,7 @@
 	</head>
 	
 	<body>
-		<%= render "common/#{(@is_login?"navbar_logged":"navbar")}" %>
+		<%= render "common/#{(is_logged)?"navbar_logged":"navbar"}" %>
 		<div id="notifaction">
 			<% if notice %>
 				<div class="alert alert-success alert-dismissible">
