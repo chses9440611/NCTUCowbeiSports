@@ -25,6 +25,7 @@
 		<%= f.label :password_confirmation, "密碼確認:" %>
 		<%= f.password_field :password_confirmation %> <br/>
 
+		<%= recaptcha_tags %>
 		<%= f.submit "註冊" %>
 		<%= link_to "取消", "/"%>
 	<% end %>
