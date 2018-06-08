@@ -11,6 +11,11 @@ module SessionsHelper
 	def is_logged
 		!current_user.nil?
 	end
+
+	def is_admin
+		return false 
+	end
+
 	
 	def log_out
 		@current_user = nil

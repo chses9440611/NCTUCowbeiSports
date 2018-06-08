@@ -9,7 +9,7 @@ Rails.application.routes.draw do
   get "/register" => redirect("/users/new")
 
   resources :sessions
-
+  resources :events
   #get "/login" => redirect("/sessions/new")
   get "/login" => redirect("/sessions/new")
   post "/login" => redirect("/sessions/create")
