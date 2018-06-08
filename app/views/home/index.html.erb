@@ -41,11 +41,11 @@
 $('#content_show').on('show.bs.modal', function(event){
 	var button = $(event.relatedTarget)
 	var title = button.data('title')
-	var content = button.data('content')
+	var content = (button.data('content')).replace(/(?:\r\n|\r|\n)/g, '<br>');
 	var time = button.data('time')
 	var modal= $(this)
 	modal.find('.modal-title').text(title)
-	modal.find('.modal-body').text(content)
+	modal.find('.modal-body').html(content)
 	modal.find('.modal-footer').text(time)
 })
 </script>
