@@ -13,7 +13,7 @@ module SessionsHelper
 	end
 
 	def is_admin
-		return false 
+		return true 
 	end
 
 	

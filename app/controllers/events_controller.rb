@@ -1,7 +1,7 @@
 class EventsController < ApplicationController
 	layout "application"
 
-	before_action :find_event, only: [:show, :edit, :destroy]
+	before_action :find_event, only: [:show, :edit,:update, :destroy]
 
 	def index
 		@events = Event.all
@@ -28,6 +28,11 @@ class EventsController < ApplicationController
 	end
 
 	def update
+		if @event.update(params_permit)
+			redirect_to events_path, notice: "更新成功"
+		else 
+			render :edit, notice: "更新失敗"
+		end
 	end
 
 	def destroy

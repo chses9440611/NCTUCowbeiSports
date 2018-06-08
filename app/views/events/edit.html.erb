@@ -1,0 +1,40 @@
+<div class="container">
+	<h1> 編輯活動</h1>
+
+	<%= form_for @event do |f| %>
+		<% if @event.errors.any? %>
+			<div>
+				<ul class="text-danger">
+					<% @event.errors.full_messages.each do |message| %>
+						<%= message %>
+					<% end %>
+				</ul>
+			</div>
+		<% end %>
+
+		<%= f.label :name, "活動名稱" %>
+		<%= f.text_field :name %><br>
+
+		<%= f.label :event_date, "活動日期" %>
+		<%= datepicker_field(f, :event_date) %><br>
+
+		<%= f.label :description, "活動簡述" %>
+		<%= f.text_area :description %><br>
+
+		<%= f.label :max_num_team, "最多幾隊: "%>
+		<%= f.number_field :max_num_team%><br>
+
+		<%= f.label :min_num_team, "最少幾隊: "%>
+		<%= f.number_field :min_num_team%><br>
+
+		<%= f.label :max_num_people, "每隊最多幾人: "%>
+		<%= f.number_field :max_num_people%><br>
+
+		<%= f.label :min_num_people, "每隊最少幾人: "%>
+		<%= f.number_field :min_num_people%><br>
+
+		<%= f.submit "儲存"%>
+		<%= link_to "取消", events_path %>
+	<% end%>
+
+</div>
