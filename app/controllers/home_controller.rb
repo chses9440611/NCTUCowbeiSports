@@ -3,7 +3,7 @@ class HomeController < ApplicationController
 	def index
     #@is_admin = true
     @anncs = Announcement.all.reverse
-		if !is_logged
+		if !is_admin
 			render 'index'
 		else
 			render 'index_logged'
