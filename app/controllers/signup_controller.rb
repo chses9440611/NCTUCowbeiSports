@@ -7,7 +7,7 @@ class SignupController < ApplicationController
 
 	def create
 		@team = @event.teams.build(params_permit)
-		@team.event_id = @event.id
+		#@team.event_id = @event.id
 		if @team.save
 			redirect_to events_path, notice: "報名成功"
 		else
@@ -22,7 +22,7 @@ class SignupController < ApplicationController
 		end
 
 		def params_permit
-			params.require(:team).permit(:name)
+			params.require(:team).permit(:name, :event_id)
 		end
 
 end

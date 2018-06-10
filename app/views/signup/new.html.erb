@@ -1,14 +1,12 @@
 <div class="container">
 	<h1>報名</h1>
 	
-	<%= @event.name%><br>
-	<%= @event.event_date%>
 	<%= form_for @team, :url => event_teams_path(@event) do |team| %>
 		<%= team.label :name, "隊伍名稱" %>
 		<%= team.text_field :name %><br>
 
 		<%= team.submit "報名"%>
-
+		<% team.hidden_field :event_id, :value => @event.id %>
 	<% end %>
 
 </div>
