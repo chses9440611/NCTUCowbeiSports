@@ -19,7 +19,7 @@
 					<td rowspan="<%= (members.count + 1)%>"><%= team.name %></td>
 	
 					<% members.each do |member|%>
-						<tr><td><%= member.student_id %>&emsp;HOHO<%#= member.name%></td></tr>
+						<tr><td><%= member.student_id %>&emsp;<%= member.name%></td></tr>
 					<% end %>
 				</tr>
 			<% end %>
