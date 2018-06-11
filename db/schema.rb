@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_06_10_084647) do
+ActiveRecord::Schema.define(version: 2018_06_10_133127) do
 
   create_table "announcements", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "title"
@@ -31,6 +31,15 @@ ActiveRecord::Schema.define(version: 2018_06_10_084647) do
     t.text "description"
   end
 
+  create_table "team_lists", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.bigint "team_id"
+    t.bigint "user_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["team_id"], name: "index_team_lists_on_team_id"
+    t.index ["user_id"], name: "index_team_lists_on_user_id"
+  end
+
   create_table "teams", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "name"
     t.integer "event_id"
@@ -46,4 +55,6 @@ ActiveRecord::Schema.define(version: 2018_06_10_084647) do
     t.string "password_digest", null: false
   end
 
+  add_foreign_key "team_lists", "teams"
+  add_foreign_key "team_lists", "users"
 end

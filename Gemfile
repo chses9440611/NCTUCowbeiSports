@@ -15,6 +15,8 @@ gem 'capistrano-rails', group: :development
 gem 'bootsnap', '>= 1.1.0', require: false
 gem 'recaptcha', require: 'recaptcha/rails'
 gem 'bootstrap-datepicker-rails'
+gem 'nested_form'
+gem 'simple_form'
 
 group :development, :test do
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]

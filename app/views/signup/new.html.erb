@@ -1,10 +1,14 @@
 <div class="container">
 	<h1>報名</h1>
 	
-	<%= form_for @team, :url => event_teams_path(@event) do |team| %>
+	<%= simple_nested_form_for @team, :url => event_teams_path(@event) do |team| %>
 		<%= team.label :name, "隊伍名稱" %>
 		<%= team.text_field :name %><br>
-
+			<%= team.fields_for :users do |user_f| %>
+				<%= user_f.label :student_id, "學號"%>
+				<%= user_f.text_field :student_id %>
+			<% end %>
+		<%= team.link_to_add "增加隊員", :users %>
 		<%= team.submit "報名"%>
 		<% team.hidden_field :event_id, :value => @event.id %>
 	<% end %>
