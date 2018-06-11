@@ -1,6 +1,11 @@
 class SignupController < ApplicationController
 	layout 'application'
 	before_action :find_event
+
+	def index
+	end
+
+
 	def new
 		@team = @event.teams.build
 	end

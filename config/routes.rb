@@ -9,11 +9,14 @@ Rails.application.routes.draw do
   get "/register" => redirect("/users/new")
 
   resources :sessions
-  resources :events do
+  resources :events , :except => [:show] do
 	  resources :teams, :controller => 'signup'
   end
   #resources :signup
   #get "/login" => redirect("/sessions/new")
   get "/login" => redirect("/sessions/new")
   post "/login" => redirect("/sessions/create")
+
+  get "/events/status" => "status#index", as: :events_status
+  get "/events/:id" => "events#show"
 end

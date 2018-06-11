@@ -1,0 +1,31 @@
+<table class="table w-50 mx-auto">
+	<% teams = get_teams(event_id)%>
+	<thead>
+		<% if teams.count > 0%>
+			<tr>
+				<th>隊伍名稱</th>
+				<th>隊伍成員</th>
+			</tr>
+		<% end %>
+	</thead>
+
+	<tbody>
+		<% if teams.count == 0 %>
+			<p>無人報名</p>
+		<% else %>
+			<% teams.each do |team| %>
+				<% members = find_member(team.id)%>
+				<tr>
+					<td rowspan="<%= (members.count + 1)%>"><%= team.name %></td>
+	
+					<% members.each do |member|%>
+						<tr><td><%= member.student_id %>&emsp;HOHO<%#= member.name%></td></tr>
+					<% end %>
+				</tr>
+			<% end %>
+		<% end %>
+	</tbody>
+	
+</table>
+
+

@@ -1,11 +1,13 @@
 class EventsController < ApplicationController
 	layout "application"
 
-	before_action :find_event, only: [:show, :edit,:update, :destroy]
+	before_action :find_event, :except => [:index, :new, :create]
 
 	def index
 		@events = Event.all
 	end
+
+
 
 	def create
 		@event = Event.new(params_permit)
