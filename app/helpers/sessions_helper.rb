@@ -13,7 +13,7 @@ module SessionsHelper
 	end
 
 	def is_admin
-		return true 
+		is_logged && current_user.admin
 	end
 
 	

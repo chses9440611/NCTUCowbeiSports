@@ -9,13 +9,20 @@
 		<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js"></script>
 		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js"></script>
 		<%= javascript_include_tag "application", "data-turbolinks-track" =>true %>
-		<%# javascript_include_tag :defaults, "nested_form" %>
 		<%= csrf_meta_tags %>
 		<title>NCTU CowBei Sports</title>
 	</head>
 	
 	<body>
-		<%= render "common/#{(is_logged)?"navbar_logged":"navbar"}" %>
+		<%#= render "common/#{(is_logged)?"navbar_logged":"navbar"}" %>
+		<% if is_admin%>
+			<%= render "common/navbar_admin" %>
+		<% elsif is_logged %>
+			<%= render "common/navbar_logged" %>
+		<% else %>
+			<%= render "common/navbar" %>
+		<% end %>
+
 		<div id="notifaction">
 			<% if notice %>
 				<div class="alert alert-success alert-dismissible">

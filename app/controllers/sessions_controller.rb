@@ -10,7 +10,7 @@ class SessionsController < ApplicationController
 	def create
 		#user = User.find_by(student_id: params[:"/sessions"=> :student_id])
 		stu_id, pass = params_permit[:student_id], params_permit[:password]
-		user = User.find_by(stu_id)#student_id: params[:"/sessions"=> :student_id])
+		user = User.find_by student_id: stu_id#student_id: params[:"/sessions"=> :student_id])
 
 		if user && user.authenticate(pass)
 			session[:user_id] = user.id
