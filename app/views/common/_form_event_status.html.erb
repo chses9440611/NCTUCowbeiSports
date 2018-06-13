@@ -5,6 +5,7 @@
 			<tr>
 				<th>隊伍名稱</th>
 				<th>隊伍成員</th>
+				<th>操作</th>
 			</tr>
 		<% end %>
 	</thead>
@@ -19,7 +20,10 @@
 					<td rowspan="<%= (members.count + 1)%>"><%= team.name %></td>
 	
 					<% members.each do |member|%>
-						<tr><td><%= member.student_id %>&emsp;<%= member.name%></td></tr>
+						<tr>
+							<td><%= member.student_id %>&emsp;<%= member.name%></td>
+							<td><%= link_to "取消", cancel_team_member_path(team_id: team.id, user_id: member.id), method: "delete", data: {confirm: "確定刪除"}%><td>
+						</tr>
 					<% end %>
 				</tr>
 			<% end %>
