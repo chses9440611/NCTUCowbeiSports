@@ -1,6 +1,6 @@
 class SignupController < ApplicationController
 	layout 'application'
-	before_action :find_event
+	before_action :find_event, except: [:destroy]
 
 	def index
 	end
@@ -19,6 +19,22 @@ class SignupController < ApplicationController
 			render :new
 		end
 	end
+
+
+	def destroy
+		@team = Team.find(params[:id])
+		if @team
+			if @team.destroy
+				redirect_to events_status_path, notice: "已取消隊伍"
+			else
+				redirect_to events_status_path, notice: "取消失敗"
+			end
+		else
+			redirect_to events_status_path, notice: "無此隊伍"
+		end
+
+	end
+
 
 	private 
 	
