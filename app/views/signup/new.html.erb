@@ -5,8 +5,9 @@
 		<%= team.label :name, "隊伍名稱" %>
 		<%= team.text_field :name %><br>
 		<%= team.fields_for :users do |user_f| %>
-			<%= user_f.label :student_id, "學號"%>
-			<%= user_f.text_field :student_id %>
+			<%= user_f.label :student_id, "學號"%>		
+		<%= user_f.text_field :student_id ,id: "s_id", onblur: "showName()"%>&emsp;<span id="s_name"></span>
+
 		<% end %>
 		<%= team.link_to_add "增加隊員", :users %><br>
 		<%= team.submit "報名"%>
@@ -15,3 +16,18 @@
 	<% end %>
 
 </div>
+
+<script>
+function showName(){
+	var id = document.getElementById("s_id").value;
+	$.ajax({
+		url: "/users/name",
+		data: {'student_id': id},
+		type: "GET",
+		success : function(data){
+			document.getElementById("s_name").innerHTML = data["name"];
+		}
+	})
+	
+};
+</script>

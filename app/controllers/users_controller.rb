@@ -16,6 +16,16 @@ class UsersController < ApplicationController
 			render :new
 		end
 	end
+
+	def show
+		@user = User.find_by student_id: params[:student_id]
+		if @user
+			render json: {"name": @user.name}
+		else
+			render json: {"name": "查無此人！"}
+		end
+	end
+
 	
 
 	private 

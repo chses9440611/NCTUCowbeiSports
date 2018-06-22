@@ -6,6 +6,7 @@ Rails.application.routes.draw do
   get "/anncs/add" => "announcements#new", as: :new_announcement
   delete "/anncs/delete" => "announcements#destroy", as: :delete_announcement
   resources :users, only:[:new, :index, :create]
+  get "/users/name" => "users#show", as: :get_name
   get "/register" => redirect("/users/new")
 
   resources :sessions
