@@ -1,6 +1,6 @@
 <div class="container">
 
-	<h1>註冊帳號</h1>
+	<h3>註冊帳號</h3>
 
 	<%= form_for @user do |f| %>
 		<% if @user.errors.any? %>
@@ -12,25 +12,40 @@
 				</ul>
 			</div>
 		<% end %>
+		<div class="form-group col-3">
+			<%= f.label :student_id, "學號" %>
+			<%= f.text_field :student_id, class: "form-control", placeholder: "0712345" %> <br/>
+		</div>
 
-		<%= f.label :student_id, "學號" %>
-		<%= f.text_field :student_id %> <br/>
+		<div class="form-group col-3">
+			<%= f.label :name, "姓名" %>
+			<%= f.text_field :name, class: "form-control", placeholder: "羅力控"%> <br/>
+		</div>
+		
+		<div class="form-group col-3">
+			<%= f.label :email, "email" %>
+			<%= f.text_field :email, class: "form-control", placeholder: "taiwanN01@gmail.com" %> <br/>
+		</div>
 
-		<%= f.label :name, "姓名" %>
-		<%= f.text_field :name %> <br/>
+		<div class="form-group col-3">
+			<%= f.label :password, "密碼" %>
+			<%= f.password_field :password, class: "form_input form-control" %> <br/>
+		</div>
 
-		<%= f.label :email, "email:" %>
-		<%= f.text_field :email %> <br/>
+		<div class="form-group col-3">
+			<%= f.label :password_confirmation, "密碼確認" %>
+			<%= f.password_field :password_confirmation, class: "form_input form-control" %> <br/>
+		</div>
+		
+		<div>
+			<%= recaptcha_tags %><br/>
+		</div>
 
-		<%= f.label :password, "密碼:" %>
-		<%= f.password_field :password, class: "form_input" %> <br/>
+		<div class="form-group">
+			<%= f.submit "註冊", class: "btn btn-primary mb-2" %>
+			<%= link_to "取消", "/"%>
+		</div>
 
-		<%= f.label :password_confirmation, "密碼確認:" %>
-		<%= f.password_field :password_confirmation %> <br/>
-
-		<%= recaptcha_tags %>
-		<%= f.submit "註冊" %>
-		<%= link_to "取消", "/"%>
 	<% end %>
 </div>
 
