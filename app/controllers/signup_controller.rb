@@ -49,7 +49,9 @@ class SignupController < ApplicationController
 		def add_member(attribute)
 			user_list = []
 			for student in attribute 
-				user_list.push(User.find_by :student_id => student[:student_id])
+				if student[:student_id] != ""
+					user_list.push(User.find_by :student_id => student[:student_id])
+				end
 				
 			end
 			return user_list
