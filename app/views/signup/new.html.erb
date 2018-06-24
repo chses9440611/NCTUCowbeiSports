@@ -4,12 +4,16 @@
 	<%= simple_nested_form_for @team, :url => event_teams_path(@event) do |team| %>
 		<%= team.label :name, "隊伍名稱" %>
 		<%= team.text_field :name %><br>
-		<%= team.fields_for :users do |user_f| %>
-			<%= user_f.label :student_id, "學號"%>		
-		<%= user_f.text_field :student_id ,id: "s_id", onblur: "showName()"%>&emsp;<span id="s_name"></span>
 
-		<% end %>
-		<%= team.link_to_add "增加隊員", :users %><br>
+		<div id="memeber">
+			<%= team.fields_for :users do |user_f| %>
+				<%= user_f.label :student_id, "學號"%>		
+				<%= user_f.text_field :student_id, onblur:"showName(this);"%>
+			<% end %>
+		
+			<%= team.link_to_add "增加隊員", :users %><br>
+		</div>
+
 		<%= team.submit "報名"%>
 		<%=link_to '取消', events_path%>
 		<% team.hidden_field :event_id, :value => @event.id %>
@@ -18,14 +22,34 @@
 </div>
 
 <script>
-function showName(){
-	var id = document.getElementById("s_id").value;
+function showName(element){
+	//var count = document.getElementsByClassName("s_id").length;
+	//element.setAttribute("id", count.toString());
+	var count = document.getElementsByName(element.name).length;
+	var s_id = element.value;
+	var span
+
+	if(count == 1){
+		var span_name = document.createAttribute("name");
+		span_name.value = element.name;
+		span = document.createElement("SPAN");
+		span.setAttributeNode(span_name);
+	}
+	else{
+		span = document.getElementsByName(element.name)[1];
+	}
+	//else{
+	//	span
+	//}
 	$.ajax({
 		url: "/users/name",
-		data: {'student_id': id},
+		data: {'student_id': s_id},
 		type: "GET",
 		success : function(data){
-			document.getElementById("s_name").innerHTML = data["name"];
+			//document.getElementById("s_name").innerHTML = element;
+			//span.setAttribute("id", id);
+			span.innerHTML="&emsp;".concat(data["name"]);
+			element.insertAdjacentElement("afterend", span);
 		}
 	})
 	
