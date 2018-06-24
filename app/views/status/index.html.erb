@@ -1,7 +1,9 @@
 <div class="container">
 	<h1>Status</h1>
 	<% @events.each do |event| %>
-		<h3><%= event.name %></h3>
-		<%= render :partial => "common/form_event_status", locals: {event: event} %>
+		<div id="<%= event.id%>">
+			<h3><%= event.name %></h3>
+			<%= render :partial => "common/form_event_status", locals: {event: event} %>
+		</div>
 	<% end %>
 </div>

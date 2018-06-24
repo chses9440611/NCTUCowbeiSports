@@ -28,7 +28,7 @@
 					<td class="text-center"><%= link_to "報名", is_logged ? new_event_team_path(event) : new_session_path%></td>
 
 					<%if is_admin %>
-						<td class="text-center"><%= link_to "修改", edit_event_path(id: event.id)%> | <%= link_to "報名狀況", "#" %> | <%= link_to "刪除", event_path(id: event.id), method: "delete", data: {confirm: "確認刪除？"} %></td>
+						<td class="text-center"><%= link_to "修改", edit_event_path(id: event.id)%> | <%= link_to "報名狀況", events_status_path(anchor: (event.id).to_s) %> | <%= link_to "刪除", event_path(id: event.id), method: "delete", data: {confirm: "確認刪除？"} %></td>
 					<% end %>
 				</tr>
 
