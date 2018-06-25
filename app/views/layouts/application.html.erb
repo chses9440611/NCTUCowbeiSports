@@ -14,7 +14,6 @@
 	</head>
 	
 	<body>
-		<%#= render "common/#{(is_logged)?"navbar_logged":"navbar"}" %>
 		<% if is_admin%>
 			<%= render "common/navbar_admin" %>
 		<% elsif is_logged %>
