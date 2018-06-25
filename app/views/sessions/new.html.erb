@@ -1,18 +1,20 @@
-<div class="container">
-	<h1>登入</h1>
+<div class="container mx-auto float-right">
 
 	<%= form_for sessions_path, url: {:action => "create" } do |f| %>
-		<div class="field">
+	<h3 class="text-center col-3">登入</h3>
+		<div class="field form-group col-md-3">
 			<%= f.label :student_id, "學號" %>
-			<%= f.text_field :student_id %><br/>
+			<%= f.text_field :student_id, class: "form-control" %><br/>
 		</div>
 
-		<div class="field">
+		<div class="field form-group col-md-3">
 			<%= f.label :password, "密碼" %>
-			<%= f.password_field :password %><br/>
+			<%= f.password_field :password, class: "form-control" %><br/>
 		</div>
 
-		<%= f.submit "登入" %>
-		<%= link_to "取消", home_path%>
+		<div class="form-group col-4">
+			<%= f.submit "登入", class: "btn btn-primary" %>
+			<%= link_to "取消", home_path%>
+		</div>
 	<% end %>
 </div>
