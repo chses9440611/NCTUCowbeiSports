@@ -1,22 +1,40 @@
-<div class="container">
-	<h1>報名</h1>
+<div class="container mx-auto float-right">
+	<h3 class="text-center col-5">報名</h3>
 	
 	<%= simple_nested_form_for @team, :url => event_teams_path(@event) do |team| %>
-		<%= team.label :name, "隊伍名稱" %>
-		<%= team.text_field :name %><br>
+		<% if @team.errors.any? %>
+			<div>
+				<ul class="text-danger">
+					<% @team.errors.full_messages.each do |message| %>
+						<%= message %>
+					<% end %>
+				</ul>
+			</div>
+		<% end %>
 
-		<div id="memeber">
-			<%= team.fields_for :users do |user_f| %>
-				<%= user_f.label :student_id, "學號"%>		
-				<%= user_f.text_field :student_id, onblur:"showName(this);"%>
-			<% end %>
-		
-			<%= team.link_to_add "增加隊員", :users %><br>
+		<div class="form-group col-5">
+			<%= team.label :name, "隊伍名稱" %>
+			<%= team.text_field :name, class: "form-control" %><br>
 		</div>
 
-		<%= team.submit "報名"%>
-		<%=link_to '取消', events_path%>
-		<% team.hidden_field :event_id, :value => @event.id %>
+
+		<div class="form-group col-5">
+			<div id="memeber">
+				<%= team.fields_for :users do |user_f| %>
+					<%= user_f.label :student_id, "學號"%>		
+					<%= user_f.text_field :student_id, onblur:"showName(this);"%>
+				<% end %>
+		
+				<%= team.link_to_add "增加隊員", :users %><br>
+			</div>
+		</div>
+
+		<div class="form-group col-5">
+			<%= team.submit "報名", class: "btn btn-primary"%>
+			<%=link_to '取消', events_path%>
+			<% team.hidden_field :event_id, :value => @event.id %>
+		</div>
+
 	<% end %>
 
 </div>
