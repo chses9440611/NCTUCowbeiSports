@@ -9,6 +9,6 @@ class User < ApplicationRecord
 	#validates
 	validates :name, :student_id, :email, :password, :password_confirmation, presence: true
 	validates :student_id, :email, uniqueness: true
-	validates :password, length: {minimum: 6, too_short: "至少輸入6位英數字"}
+	validates :password, length: {minimum: 6, too_short: "至少輸入6位英數字"} 
 
 end
