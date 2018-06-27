@@ -1,9 +1,21 @@
-<div class="container">
-	<h1>Status</h1>
+<div class="container mx-auto float-righti w-50">
+	<h3 class="text-center col-3">Status</h3>
 	<% @events.each do |event| %>
 		<div id="<%= event.id%>">
 			<h3><%= event.name %></h3>
-			<%= render :partial => "common/form_event_status", locals: {event: event} %>
+			<div name="status">
+				<div class="jumbotron">
+					<ol class="list-group">
+						<li>日期: <%= event.event_date%></li> 
+						<li>最大隊伍數: <%= event.max_num_team %></li>
+						<li>最小隊伍數: <%= event.min_num_team %></li>
+						<li>已報名對伍數: <%= event.teams.size %>隊</li>
+						<li class="text-danger">尚可報名: <%= event.max_num_team - event.teams.size %>隊</li>
+					</ol>
+				</div>
+
+				<%= render :partial => "common/form_event_status", locals: {event: event} %>
+			</div>
 		</div>
 	<% end %>
 </div>

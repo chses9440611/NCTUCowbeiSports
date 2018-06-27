@@ -1,4 +1,4 @@
-<table class="table w-50 mx-auto">
+<table class="table">
 	<% teams = get_teams(event.id)%>
 	<thead>
 		<% if teams.count > 0%>
@@ -17,7 +17,9 @@
 			<% teams.each do |team| %>
 				<% members = find_member(team.id)%>
 				<tr>
-					<td rowspan="<%= (members.count + 1)%>"><%= team.name %></br><%= link_to "隊伍取消", event_team_path(event, team), method: "delete", data: {confirm: "確定取消"}%></td>
+					<td rowspan="<%= members.count + 1%>"><%= team.name %></td>
+					<td colspan="2"><%= link_to "隊伍取消", event_team_path(event, team), method: "delete", data: {confirm: "確定取消"}%></td>
+					
 					<% members.each do |member|%>
 						<tr>
 							<td><%= member.student_id %>&emsp;<%= member.name%></td>
