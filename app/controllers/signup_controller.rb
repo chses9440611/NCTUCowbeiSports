@@ -7,7 +7,11 @@ class SignupController < ApplicationController
 
 
 	def new
-		@team = @event.teams.build
+		if check_teams_num < @event.max_num_team
+			@team = @event.teams.build
+		else
+			redirect_to events_status_path, notice: "報名已滿"
+		end
 	end
 
 	def create
@@ -61,6 +65,10 @@ class SignupController < ApplicationController
 				
 			end
 			return user_list
+		end
+
+		def check_teams_num
+			@event.teams.size
 		end
 
 end
