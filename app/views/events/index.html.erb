@@ -25,7 +25,13 @@
 					<td class="text-center"><%= event.name %></td>
 					<td class="text-center"><%= event.event_date.strftime("%Y-%m-%d") %></td>
 					<td class="text-center"><%= (event.description || "No description")%></td>
-					<td class="text-center"><%= link_to "報名", is_logged ? new_event_team_path(event) : new_session_path%></td>
+					<td class="text-center">
+						<% if event.teams.size < event.max_num_team %>
+							<%= link_to "報名", is_logged ? new_event_team_path(event) : new_session_path %>
+						<% else %>
+							報名隊伍已滿
+						<% end %>
+					</td>
 
 					<%if is_admin %>
 						<td class="text-center"><%= link_to "修改", edit_event_path(id: event.id)%> | <%= link_to "報名狀況", events_status_path(anchor: (event.id).to_s) %> | <%= link_to "刪除", event_path(id: event.id), method: "delete", data: {confirm: "確認刪除？"} %></td>
