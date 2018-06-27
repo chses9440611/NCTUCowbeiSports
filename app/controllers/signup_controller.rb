@@ -12,7 +12,13 @@ class SignupController < ApplicationController
 
 	def create
 		@team = @event.teams.build(params_permit)
-		@team.users = add_member(params_permit[:users_attributes].values)
+		
+		if params_permit.key?("users_attributes")
+			@team.users = add_member(params_permit[:users_attributes].values)
+		else
+			@team.users = []
+		end
+		
 		if @team.save
 			redirect_to events_path, notice: "報名成功"
 		else
