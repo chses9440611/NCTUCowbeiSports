@@ -12,6 +12,7 @@ class SignupController < ApplicationController
   def create
     @team = @event.teams.build(team_params)
     @team.users = users
+
     if @team.save
       redirect_to events_path, notice: "報名成功"
     else
@@ -45,12 +46,17 @@ class SignupController < ApplicationController
   end
 
   def user_ids
-    user_params = params.require(:team).permit(users_attributes: [:student_id])
-    user_params[:users_attributes].values.map { |param| param[:student_id] }
+    permitted_params = params.require(:team).permit(users_attributes: [:student_id])
+    user_params = permitted_params[:users_attributes]
+    if user_params
+      user_params.values.map { |param| param[:student_id] }
+    else
+      []
+    end
   end
 
   def users
-    User.find_by(student_id: user_ids)
+    User.where(student_id: user_ids)
   end
 end
 
