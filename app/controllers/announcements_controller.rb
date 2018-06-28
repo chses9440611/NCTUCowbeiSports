@@ -1,10 +1,19 @@
-class AnnouncementsController < ActionController::Base
-	layout "application"
+class AnnouncementsController < ApplicationController
 	skip_before_action :verify_authenticity_token, only: [:destroy]
 	before_action :find_annc, only: [:show, :destroy]
 	def new
 		@announcement = Announcement.new
 	end
+
+  def index
+    #@is_admin = true
+    @anncs = Announcement.order(id: :desc)
+		if !is_admin
+			render 'index'
+		else
+			render 'index_logged'
+		end
+  end
 	
 	def create
 		@announcement = Announcement.new(params_permit)
@@ -28,8 +37,6 @@ class AnnouncementsController < ActionController::Base
 			end
 		end
 	end
-
-
 
 	private
 

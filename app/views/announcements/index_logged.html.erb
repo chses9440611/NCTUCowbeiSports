@@ -21,7 +21,7 @@
 					</td>
 					
 					<td>
-						<%= link_to (annc.title || "No content"), anncs_path(id: annc.id) %>
+						<%= link_to (annc.title || "No content"), announcement_path(id: annc.id) %>
 					</td>
 					
 					<td>	
@@ -30,7 +30,7 @@
 						</button>
 					</td>
 					<% if is_admin %>
-						<td><%= link_to "刪除", delete_announcement_path(id: annc.id), method: "delete", data: { confirm: "確定刪除" } %></td>
+						<td><%= link_to "刪除", announcement_path(id: annc.id), method: "delete", data: { confirm: "確定刪除" } %></td>
 					<% end %>
 					<%= render partial: "modal"%>
 				</tr>

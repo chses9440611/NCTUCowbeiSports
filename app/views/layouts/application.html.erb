@@ -14,13 +14,7 @@
 	</head>
 	
 	<body>
-		<% if is_admin%>
-			<%= render "common/navbar_admin" %>
-		<% elsif is_logged %>
-			<%= render "common/navbar_logged" %>
-		<% else %>
-			<%= render "common/navbar" %>
-		<% end %>
+    <%= render "common/navbar" %>
 
 		<div id="notifaction">
 			<% if notice %>
