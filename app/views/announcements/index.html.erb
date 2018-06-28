@@ -1,0 +1,51 @@
+<div class="container">
+	<table class="table table-hover w-50 mx-auto">
+		<thead>
+			<tr>
+				<th class="text-center" colspan="3">公告列表</th>
+			<!--	<th>
+					<% if @is_admin %>
+						<%= link_to "新增公告", new_announcement_path %>
+					<% end %>
+			</th> -->
+
+			</tr>
+
+		</thead>
+
+		<tbody>
+			<% @anncs.each do |annc| %>
+				<tr>
+					<td>
+						<%= annc.created_at.strftime("%Y-%m-%d")%>
+					</td>
+					
+					<td>
+						<%= link_to (annc.title || "No content"), announcement_path(id: annc.id) %>
+					</td>
+					
+					<td>	
+						<button type="button" class="btn btn-success" data-toggle="modal" data-target="#content_show" data-title="<%= annc.title || "No title"%>" data-content="<%= annc.content || "No content" %>" data-time="<%= annc.created_at %>">
+							詳細
+						</button>
+					</td>
+					<!-- <td><%= link_to "刪除", announcement_path(annc.id), method: "delete", data: { confirm: "確定刪除" } %></td> -->
+					<%= render partial: "modal"%>
+				</tr>
+			<% end %>
+	</table>
+</div>
+
+
+<script>
+$('#content_show').on('show.bs.modal', function(event){
+	var button = $(event.relatedTarget)
+	var title = button.data('title')
+	var content = (button.data('content')).replace(/(?:\r\n|\r|\n)/g, '<br>');
+	var time = button.data('time')
+	var modal= $(this)
+	modal.find('.modal-title').text(title)
+	modal.find('.modal-body').html(content)
+	modal.find('.modal-footer').text(time)
+})
+</script>

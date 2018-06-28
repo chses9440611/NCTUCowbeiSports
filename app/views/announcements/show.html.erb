@@ -2,5 +2,5 @@
 	<h1><%= @annc.title%></h1>
 	<p><%= @annc.created_at %></p><br/>
 	<%= simple_format(@annc.content) %>
-	<%= link_to "返回", home_path, html_options= {class: "btn btn-outline-primary"} %>
+	<%= link_to "返回", root_path, html_options= {class: "btn btn-outline-primary"} %>
 </div>

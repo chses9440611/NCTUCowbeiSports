@@ -5,32 +5,29 @@ class UsersController < ApplicationController
 		@user = User.new
 	end
 
-
 	def create
-		@user = User.new(params_permit)
+		@user = User.new(user_params)
 
-		if @user.save and verify_recaptcha(model: @user)
+    if verify_recaptcha(model: @user) and @user.save
 			log_in(@user)
-			redirect_to "/", notice: "註冊成功"
+			redirect_to root_path, notice: "註冊成功"
 		else
 			render :new
 		end
 	end
 
-	def show
-		@user = User.find_by student_id: params[:student_id]
-		if @user
-			render json: {"name": @user.name}
+	def search
+		user = User.find_by student_id: params[:student_id]
+		if user
+      render json: {name: user.name, id: user.id}
 		else
-			render json: {"name": "查無此人！"}
+			render json: {name: "查無此人！", id: nil}
 		end
 	end
 
-	
-
 	private 
 	
-	def params_permit
+	def user_params
 		params.require(:user).permit(:student_id, :email, :password, :password_confirmation, :name)
 	end
 	
