@@ -31,9 +31,9 @@ class AnnouncementsController < ApplicationController
 		#@announcement = Announcement.find(params[:id])
 		if @annc
 			if @annc.destroy
-				redirect_to home_path, notice: "公告已刪除"
+				redirect_to root_path, notice: "公告已刪除"
 			else
-				redirect_to home_path, notice: "公告未刪除"
+				redirect_to root_path, notice: "公告未刪除"
 			end
 		end
 	end
