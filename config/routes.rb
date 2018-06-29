@@ -1,6 +1,10 @@
 Rails.application.routes.draw do
   root :to => "announcements#index"
-  resources :announcements
+  resources :announcements do
+    collection do
+      delete "bulk_destroy"
+    end
+  end
 
   resources :users, only:[:new, :index, :create] do
     collection do

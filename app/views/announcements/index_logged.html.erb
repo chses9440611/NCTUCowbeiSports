@@ -4,9 +4,10 @@
 			<tr>
 				<th class="text-center" colspan="3">公告列表</th>
 				<th>
-					<% if is_admin %>
-						<%= link_to "新增公告", new_announcement_path %>
-					<% end %>
+          <%= link_to "新增公告", new_announcement_path, class: "btn btn-sm btn-success" %>
+				</th>
+				<th>
+          <a href="javascript: void(0)" id="anncs-bulk-destroy" class="btn btn-sm btn-danger">一次刪除</a>
 				</th>
 
 			</tr>
@@ -14,6 +15,7 @@
 		</thead>
 
 		<tbody>
+      <%= form_with(url: bulk_destroy_announcements_path, method: :delete, id: "anncs-bulk-destroy-form") do |f| %>
 			<% @anncs.each do |annc| %>
 				<tr>
 					<td>
@@ -32,9 +34,13 @@
 					<% if is_admin %>
 						<td><%= link_to "刪除", announcement_path(id: annc.id), method: "delete", data: { confirm: "確定刪除" } %></td>
 					<% end %>
+          <td>
+            <%= check_box_tag "annc_ids[]", annc.id %>
+          </td>
 					<%= render partial: "modal"%>
 				</tr>
 			<% end %>
+      <% end %> 
 	</table>
 </div>
 

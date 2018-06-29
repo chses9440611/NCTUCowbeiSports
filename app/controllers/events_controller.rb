@@ -7,8 +7,6 @@ class EventsController < ApplicationController
 		@events = Event.all
 	end
 
-
-
 	def create
 		@event = Event.new(params_permit)
 		if @event.save
@@ -45,9 +43,7 @@ class EventsController < ApplicationController
 				redirect_to events_path, notice: "活動刪除失敗"
 			end
 		end
-
 	end
-
 
 	private
 	

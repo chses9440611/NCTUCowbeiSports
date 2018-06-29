@@ -14,6 +14,15 @@ class AnnouncementsController < ApplicationController
 			render 'index_logged'
 		end
   end
+
+  def bulk_destroy
+    if params[:annc_ids]
+      ids = params[:annc_ids].to_a.map(&:to_i)
+      Announcement.where(id: ids).delete_all
+      redirect_to root_path
+    end
+  end
+
 	
 	def create
 		@announcement = Announcement.new(params_permit)
