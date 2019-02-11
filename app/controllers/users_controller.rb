@@ -8,7 +8,7 @@ class UsersController < ApplicationController
 	def create
 		@user = User.new(user_params)
 
-    if verify_recaptcha(model: @user) and @user.save
+    if @user.save
 			log_in(@user)
 			redirect_to root_path, notice: "註冊成功"
 		else
